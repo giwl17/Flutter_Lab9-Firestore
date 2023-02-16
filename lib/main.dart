@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lab9/addbook.dart';
 import 'package:lab9/book.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:lab9/showdetail.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

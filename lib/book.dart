@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:lab9/showdetail.dart';
 
 class BookPage extends StatelessWidget {
   final store = FirebaseFirestore.instance;
@@ -46,6 +47,10 @@ class BookPage extends StatelessWidget {
           trailing: Text("${model['price']}"),
           onTap: () {
             print(model['title']);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => BookDetail(model['title'])));
           },
         );
       },
