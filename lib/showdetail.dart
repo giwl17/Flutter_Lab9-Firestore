@@ -42,7 +42,13 @@ class _BookDetailState extends State<BookDetail> {
         return ListTile(
           title: Text(model['title']),
           //    subtitle: Text(model['detail'] + Text("${model['price']}")),
-          subtitle: Text(a),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(a),
+              Text("${model['author']}"),
+            ],
+          ),
           trailing: ElevatedButton(
               child: const Text('Delete'),
               onPressed: () {
