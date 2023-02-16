@@ -43,7 +43,13 @@ class BookPage extends StatelessWidget {
         var model = data.docs.elementAt(index);
         return ListTile(
           title: Text(model['title']),
-          subtitle: Text(model['detail']),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(model['detail']),
+              Text(model['author']),
+            ],
+          ),
           trailing: Text("${model['price']}"),
           onTap: () {
             print(model['title']);

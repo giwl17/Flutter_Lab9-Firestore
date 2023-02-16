@@ -15,6 +15,7 @@ class _AddBookPageState extends State<AddBookPage> {
   final _title = TextEditingController();
   final _detail = TextEditingController();
   final _price = TextEditingController();
+  final _author = TextEditingController();
   final store = FirebaseFirestore.instance;
 
   @override
@@ -30,6 +31,7 @@ class _AddBookPageState extends State<AddBookPage> {
             buildTitleField(),
             buildDetailField(),
             buildPriceField(),
+            buildAuthorField(),
             buildSaveButton()
           ],
         ),
@@ -46,7 +48,8 @@ class _AddBookPageState extends State<AddBookPage> {
             Map<String, dynamic> data = {
               'title': _title.text,
               'detail': _detail.text,
-              'price': double.parse(_price.text)
+              'price': double.parse(_price.text),
+              'author': _author.text
             };
             try {
               DocumentReference ref = await store.collection('books').add(data);
@@ -67,6 +70,17 @@ class _AddBookPageState extends State<AddBookPage> {
             );
           }
         });
+  }
+
+  TextFormField buildAuthorField() {
+    return TextFormField(
+      controller: _author,
+      decoration: const InputDecoration(
+        labelText: 'author',
+        icon: Icon(Icons.list),
+      ),
+      validator: (value) => value!.isEmpty ? 'Please fill in author' : null,
+    );
   }
 
   TextFormField buildTitleField() {
