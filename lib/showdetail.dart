@@ -47,8 +47,8 @@ class _BookDetailState extends State<BookDetail> {
               child: const Text('Delete'),
               onPressed: () {
                 print(model.id);
-                //deleteValue(model.id);
-                //Navigator.pop(context);
+                deleteValue(model.id);
+                Navigator.pop(context);
               }),
         );
       },
@@ -71,5 +71,15 @@ class _BookDetailState extends State<BookDetail> {
         .collection('books')
         .where('title', isEqualTo: titleName)
         .snapshots();
+  }
+
+  Future<void> deleteValue(String titleName) async {
+    await _firestore
+        .collection('books')
+        .doc(titleName)
+        .delete()
+        .catchError((e) {
+      print(e);
+    });
   }
 }
